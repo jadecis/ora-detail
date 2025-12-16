@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORA Detail — автомобильный премиум детейлинг</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="src/assets/icons/logo.png" alt="ORA Detail" class="logo">
+                <span class="logo-text">ORA Detail</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><div class="nav-item"><a href="#services"><img src="src/assets/icons/услуги.png" alt="Услуги"><span>Услуги</span></a></div></li>
+                    <li><div class="nav-item"><a href="#products"><img src="src/assets/icons/товары.png" alt="Товары"><span>Товары</span></a></div></li>
+                    <li><div class="nav-item"><a href="#cart"><img src="src/assets/icons/корзина.png" alt="Корзина"><span>Корзина</span></a></div></li>
+                    <li><div class="nav-item"><a href="#profile"><img src="src/assets/icons/профиль.png" alt="Профиль"><span>Профиль</span></a></div></li>
+                </ul>
+            </nav>
+        </div>
+    </header>    
+    <section class="hero-banner">
+        <div class="slides">
+            <div class="slide" style="background-image: url('src/assets/images/main-slider/girls.png');"></div>
+            <div class="slide" style="background-image: url('src/assets/images/main-slider/mercedes.jpg');"></div>
+            <div class="slide" style="background-image: url('src/assets/images/main-slider/porsche.png');"></div>
+            <div class="slide" style="background-image: url('src/assets/images/main-slider/mercedes2.png');"></div>
+        </div>
+        <div class="hero-content">
+            <h2>ORA Detail</h2>
+            <button>Подробнее</button>
+        </div>
+    </section>
+
+    <section class="content-wrapper">
+        <aside class="filters">
+            <div class="filters-inner">
+                <h3>Фильтры</h3>
+
+                <div class="filter-group">
+                    <label for="search">Поиск</label>
+                    <input id="search" type="text" placeholder="Найти товар...">
+                </div>
+
+                <div class="filter-group">
+                    <h4>Категория</h4>
+                    <label><input type="checkbox" name="category"> Химия</label>
+                    <label><input type="checkbox" name="category"> Аксессуары</label>
+                    <label><input type="checkbox" name="category"> Наборы</label>
+                    <label><input type="checkbox" name="category"> Ароматизаторы в машину</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Тип товара</h4>
+                    <label><input type="checkbox" name="type"> Спрей/жидкость</label>
+                    <label><input type="checkbox" name="type"> Воск/керамика/гидрофоб</label>
+                    <label><input type="checkbox" name="type"> Микрофибра/ткань</label>
+                    <label><input type="checkbox" name="type"> Апликатор/губка/щетка</label>
+                    <label><input type="checkbox" name="type"> Ароматизатор</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Назначение</h4>
+                    <label><input type="checkbox" name="purpose"> Для кузова</label>
+                    <label><input type="checkbox" name="purpose"> Для салона</label>
+                    <label><input type="checkbox" name="purpose"> Для стекол</label>
+                    <label><input type="checkbox" name="purpose"> Аксессуары</label>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn-apply">Применить</button>
+                    <button class="btn-clear">Сбросить</button>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section class="products" id="products">
+                <div class="products-loading">Загрузка товаров...</div>
+            </section>
+        </main>
+    </section>
+    <footer>
+        <section class="footer-content">
+            <div class="footer-section">
+                <h4>О компании <img class="footer-heading-icon" src="src/assets/icons/о-компании.png" alt=""></h4>
+                <p>ORA Detail — автомобильный премиум детейлинг. Профессиональная химчистка, полировка, нанесение керамики и защита кузова.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Контакты <img class="footer-heading-icon" src="src/assets/icons/контакты.png" alt=""></h4>
+                <p><img class="footer-icon" src="src/assets/icons/телефон.png" alt="phone">+7 (800) 123-45-67</p>
+                <p><img class="footer-icon" src="src/assets/icons/почта.png" alt="email">autodetail@oradetail.ru</p>
+                <p><img class="footer-icon" src="src/assets/icons/telegram.png" alt="tg">@oradetail</p>
+                <p><img class="footer-icon" src="src/assets/icons/whatsapp.png" alt="wh">+7 (900) 123-45-67</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Адрес <img class="footer-heading-icon" src="src/assets/icons/адрес.png" alt=""></h4>
+                <p>г. Рязань, ул. Пушкина, д. 1к</p>
+                <p>Пн-Пт: 08:00 - 24:00</p>
+                <p>Сб-Вс: 09:00 - 01:00</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ссылки <img class="footer-heading-icon" src="src/assets/icons/ссылка.png" alt=""></h4>
+                <ul>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#products">Товары</a></li>
+                    <li><a href="#profile">Профиль </a></li>
+                    <li><a href="#documents">Политика конфиденциальности</a></li> 
+                </ul>
+            </div>
+        </section>
+
+        <section class="footer-bottom">
+            <p>&copy; 2025 ORA Detail. Все права защищены.</p>
+            <p><a href="#" class="back-to-top">Политика конфиденциальности</a> | <a href="#" class="back-to-top">Условия использования</a></p>    
+        </section>
+    </footer>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
