@@ -51,8 +51,8 @@
   height: 300px; /* half of 360px */
 }
 
-/* Utility to ensure only one button visible when requested */
-.hero-content.one-button button + button {
+/* Utility to ensure only one CTA visible when requested */
+.hero-content.one-button .hero-cta + .hero-cta {
   display: none;
 }
 
@@ -75,7 +75,7 @@
     margin: 0;
   }
 
-  button {
+  .hero-cta {
     background-color: rgba(211, 211, 211, 0.95);
     color: #333;
     border: none;
@@ -85,6 +85,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-decoration: none;
 
     &:hover {
       transform: scale(1.03);

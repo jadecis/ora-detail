@@ -10,21 +10,29 @@
       ></div>
     </div>
     <div class="hero-content">
-      <h2>Добро пожаловать в ORA</h2>
-      <button>Посмотреть наши услуги</button>
+      <template v-if="!simple">
+        <h2>Детейлинг с ORA</h2>
+        <router-link to="/services" class="hero-cta">Посмотреть наши услуги</router-link>
+      </template>
+      <template v-else>
+        <router-link to="/" class="hero-cta">Подробнее</router-link>
+      </template>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-
-// use Vite's new glob options: query + import to get URL strings (replaces deprecated `as: 'url'`)
+import { ref, onMounted, onBeforeUnmount, defineProps } from 'vue'
+defineProps({
+  simple: {
+    type: Boolean,
+    default: false,
+  },
+})
 const modules = import.meta.glob('../assets/images/main-slider/*.{jpg,jpeg,png,gif,webp}', { eager: true, query: '?url', import: 'default' })
 const imagesStatic = Object.entries(modules)
   .sort((a, b) => a[0].localeCompare(b[0]))
   .map(([, url]) => url)
-// reactive list that we'll filter after preload
 const images = ref(imagesStatic.slice())
 
 const current = ref(0)

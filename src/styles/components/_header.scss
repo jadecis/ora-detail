@@ -1,6 +1,5 @@
 @use '../globals' as *;
 
-// Header (component-level copy)
 header {
   background-color: $header-bg;
   color: $white;
@@ -26,7 +25,7 @@ header {
     min-width: 760px;
     margin: 0 auto;
     width: 100%;
-    padding: 0 40px;
+    padding: 0 40px 0 40px;
   }
 
   .logo-section {
@@ -51,13 +50,15 @@ header {
   }
 
   nav {
+    margin-left: auto;
+
     ul {
       list-style: none;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       margin: 0;
-      padding: 0 20px;
+      padding: 0 0;
       height: 100%;
     }
 

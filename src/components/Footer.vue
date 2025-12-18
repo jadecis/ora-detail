@@ -24,17 +24,17 @@
             <div class="footer-section">
                 <h4>Ссылки <img class="footer-heading-icon" src="../assets/icons/ссылка.png" alt=""></h4>
                 <ul>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#products">Товары</a></li>
-                    <li><a href="#profile">Профиль </a></li>
-                    <li><a href="#documents">Политика конфиденциальности</a></li> 
+                    <li><router-link to="/services">Услуги</router-link></li>
+                    <li><router-link to="/products">Товары</router-link></li>
+                    <li><router-link to="/profile">Профиль </router-link></li>
+                    <li><a href="/docs/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a></li> 
                 </ul>
             </div>
         </section>
 
         <section class="footer-bottom">
             <p>&copy; 2025 ORA Detail. Все права защищены.</p>
-            <p><a href="#" class="back-to-top">Политика конфиденциальности</a> | <a href="#" class="back-to-top">Условия использования</a></p>    
+            <p><a href="/docs/privacy-policy.pdf" target="_blank" rel="noopener" class="back-to-top">Политика конфиденциальности</a> | <a href="/docs/terms.pdf" target="_blank" rel="noopener" class="back-to-top">Условия использования</a></p>    
         </section>
     </footer>
 </template>
