@@ -22,7 +22,7 @@ header {
     align-items: center;
     height: 100%;
     max-width: $max-width;
-    min-width: 760px;
+    min-width: 0;
     margin: 0 auto;
     width: 100%;
     padding: 0 40px 0 40px;
@@ -107,5 +107,80 @@ header {
         transform: translateY(0) scale(0.95);
       }
     }
+  }
+}
+
+@media (max-width: 900px) {
+  header {
+    height: 88px;
+  }
+
+  .header-container {
+    padding: 0 20px;
+  }
+
+  .logo {
+    width: 82px;
+    height: 82px;
+  }
+
+  .logo-text {
+    font-size: 28px;
+  }
+
+  header nav ul {
+    padding: 0;
+    gap: 8px;
+  }
+
+  header nav .nav-item {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (max-width: 700px) {
+  header {
+    height: 76px;
+  }
+
+  .header-container {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .logo-section {
+    gap: 8px;
+  }
+
+  .logo {
+    width: 68px;
+    height: 68px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  header nav ul {
+    gap: 6px;
+  }
+
+  header nav .nav-item {
+    width: 60px;
+    height: 60px;
+  }
+
+  header nav a {
+    gap: 4px;
+  }
+
+  header nav a img {
+    width: 28px;
+    height: 28px;
+  }
+
+  header nav a span {
+    font-size: 11px;
   }
 }

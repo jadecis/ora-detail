@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const Home = () => import('../pages/home/home.vue')
 const Products = () => import('../pages/products/products.vue')
-const Profile = () => import('../pages/profile/profile.vue')
-const Services = () => import('../pages/services/services.vue')
-const Cart = () => import('../pages/cart/cart.vue')
+const Profile = () => import('../pages/profile/Profile.vue')
+const Services = () => import('../pages/services/Services.vue')
+const Cart = () => import('../pages/cart/Cart.vue')
 
 const routes = [
   { path: '/', name: 'Home', component: Home },

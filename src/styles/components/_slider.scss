@@ -92,3 +92,26 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .hero-banner.large-slider { height: 380px; }
+  .hero-banner.small-slider { height: 240px; }
+  .hero-content { padding-left: 24px; }
+  .hero-content h2 { font-size: 30px; }
+  .hero-content .hero-cta { padding: 10px 22px; }
+}
+
+@media (max-width: 600px) {
+  .hero-banner { height: 260px; }
+  .hero-banner.large-slider { height: 300px; }
+  .hero-banner.small-slider { height: 200px; }
+  .hero-content {
+    padding-left: 16px;
+    gap: 12px;
+  }
+  .hero-content h2 { font-size: 22px; }
+  .hero-content .hero-cta {
+    padding: 9px 18px;
+    font-size: 14px;
+  }
+}

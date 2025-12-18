@@ -60,6 +60,10 @@
   }
 }
 
+.hero-image__overlay h2 {
+  word-break: break-word;
+}
+
 .specialists-title {
   text-align: center;
   font-size: 32px;
@@ -168,4 +172,17 @@
     .other-photos__grid { grid-template-columns: repeat(2, 1fr); }
     .photo-card__img { height: 300px; }
   }
+}
+
+@media (max-width: 600px) {
+  .hero-image { margin: 20px 0; }
+  .hero-image__overlay h2 { font-size: 18px; }
+  .hero-image__overlay p { font-size: 13px; }
+  .specialists-title { font-size: 20px; margin: 20px 0 8px; }
+  .team-image { margin: 0 0 24px; }
+  .team-image__overlay h3 { font-size: 18px; }
+  .team-image__overlay p { font-size: 14px; }
+  .other-photos { margin: 20px auto 36px; }
+  .other-photos__grid { gap: 14px; }
+  .photo-card__img { height: 200px; }
 }

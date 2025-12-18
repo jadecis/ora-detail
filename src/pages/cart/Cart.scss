@@ -190,4 +190,16 @@
   .cart-page {
     padding: 24px;
   }
+
+  .cart-item {
+    gap: 12px;
+  }
+
+  .cart-item__info h3 {
+    font-size: 15px;
+  }
+
+  .cart-summary {
+    width: 100%;
+  }
 }

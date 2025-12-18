@@ -77,6 +77,25 @@
   .products-layout {
     flex-direction: column;
   }
+
+  .products-page h1 {
+    font-size: 26px;
+    margin-top: 12px;
+  }
+
+  .products-subtitle {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .filters {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .product-card {
+    animation-delay: 0ms !important;
+  }
 }
 
 .products {
