@@ -1,0 +1,131 @@
+@use '../globals' as *;
+
+// Footer (component-level copy)
+footer {
+  background-color: $header-bg;
+  color: $white;
+  margin-top: auto;
+  padding: 40px 20px 20px;
+  min-height: auto;
+  display: block;
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: $max-width;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+  }
+
+  .footer-section {
+    h4 {
+      margin: 0 0 14px 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 0 0 8px 0;
+    }
+  }
+
+  .footer-icon {
+    width: 20px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 2px;
+    vertical-align: middle;
+    flex: 0 0 auto;
+  }
+
+  .footer-section p,
+  .footer-section ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-section h4 {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-heading-icon {
+    width: 25px;
+    height: auto;
+    object-fit: contain;
+    margin-left: 8px;
+    flex: 0 0 auto;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    max-width: $max-width;
+    margin: 0 auto;
+
+    p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+      .back-to-top {
+        color: $white;
+        transition: color 0.15s ease;
+        &:hover {
+          color: $accent;
+        }
+      }
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 30px 15px 15px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .footer-bottom {
+    padding: 15px;
+  }
+}
