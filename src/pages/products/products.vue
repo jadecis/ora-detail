@@ -190,11 +190,11 @@ onMounted(async () => {
   try {
     const url = new URL('../../products.json', import.meta.url)
     const response = await fetch(url, { cache: 'no-cache' })
-    if (!response.ok) throw new Error('?? ??????? ????????? ??????.')
+    if (!response.ok) throw new Error('Ошибка загрузки товаров.')
     const data = await response.json()
     products.value = Array.isArray(data) ? data : []
   } catch (err) {
-    error.value = err instanceof Error ? err.message : '?? ??????? ????????? ??????.'
+    error.value = err instanceof Error ? err.message : 'Неизвестная ошибка загрузки товаров.'
   } finally {
     loading.value = false
   }
