@@ -45,4 +45,4 @@ const otherPhotos = [
 ]
 </script>
 
-<style lang="scss" scoped src="./Home.scss"></style>
+<style lang="scss" scoped src="./home.scss"></style>
