@@ -3,11 +3,13 @@
 // Footer (component-level copy)
 footer {
   background-color: $header-bg;
-  color: $white;
+  color: $on-header;
   margin-top: auto;
+  width: 100%;
   padding: 40px 20px 20px;
   min-height: auto;
   display: block;
+  overflow-x: hidden;
 
   .footer-content {
     display: grid;
@@ -25,7 +27,7 @@ footer {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #fff;
+      color: $on-header;
     }
 
     p {
@@ -33,6 +35,8 @@ footer {
       font-size: 13px;
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.85);
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     a {
@@ -68,8 +72,11 @@ footer {
   .footer-section p,
   .footer-section ul li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .footer-section h4 {
@@ -98,7 +105,7 @@ footer {
     }
     
       .back-to-top {
-        color: $white;
+        color: $on-header;
         transition: color 0.15s ease;
         &:hover {
           color: $accent;
@@ -108,7 +115,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .footer-content {
+  footer .footer-content {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
@@ -116,16 +123,28 @@ footer {
 
 @media (max-width: 600px) {
   footer {
-    padding: 30px 15px 15px;
+    padding: 24px 12px 14px;
   }
 
-  .footer-content {
+  footer .footer-content {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
     padding: 0;
   }
 
-  .footer-bottom {
-    padding: 15px;
+  footer .footer-bottom {
+    padding-top: 14px;
+    margin-top: 8px;
+  }
+
+  footer .footer-section h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  footer .footer-section p,
+  footer .footer-section ul li {
+    font-size: 12px;
+    line-height: 1.45;
   }
 }

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "auto_shampoo",
+    "folder": "auto_shampoo",
+    "title": "Шампунь для авто",
+    "category": "Химия",
+    "price": "450 ₽"
+  },
+  {
+    "id": "glass_cleaner",
+    "folder": "glass_cleaner",
+    "title": "Средство для стекол",
+    "category": "Химия",
+    "price": "320 ₽"
+  },
+  {
+    "id": "glove",
+    "folder": "glove",
+    "title": "Перчатка для мойки",
+    "category": "Аксессуары",
+    "price": "250 ₽"
+  },
+  {
+    "id": "microfiber",
+    "folder": "microfiber",
+    "title": "Микрофибра",
+    "category": "Аксессуары",
+    "price": "180 ₽"
+  },
+  {
+    "id": "polish",
+    "folder": "polish",
+    "title": "Полироль",
+    "category": "Химия",
+    "price": "780 ₽"
+  },
+  {
+    "id": "set1",
+    "folder": "set1",
+    "title": "Набор 1",
+    "category": "Наборы",
+    "price": "1 500 ₽"
+  },
+  {
+    "id": "set2",
+    "folder": "set2",
+    "title": "Набор 2",
+    "category": "Наборы",
+    "price": "2 100 ₽"
+  },
+  {
+    "id": "set3",
+    "folder": "set3",
+    "title": "Набор 3",
+    "category": "Наборы",
+    "price": "2 900 ₽"
+  }
+]

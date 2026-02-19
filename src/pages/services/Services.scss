@@ -22,13 +22,43 @@
 .services-status {
   padding: 16px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.9);
+  background: $white;
   color: $text;
 }
 
 .services-status--error {
   background: rgba(255, 220, 220, 0.9);
   color: #7a1b1b;
+}
+
+.services-status--success {
+  background: rgba(215, 255, 225, 0.9);
+  color: #1b7f3a;
+  margin-bottom: 12px;
+}
+
+.services-status--auth {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  background: rgba(255, 245, 214, 0.95);
+  color: #7d5a00;
+}
+
+.services-status__action {
+  border: none;
+  border-radius: 8px;
+  background: $primary;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.services-status__action:hover {
+  background: $primary-hover;
 }
 
 .services-grid {
@@ -107,7 +137,7 @@
   height: 34px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.9);
+  background: $filters-bg;
   color: $text;
   display: inline-flex;
   align-items: center;
@@ -195,3 +225,250 @@
 .service-card:nth-child(7) { animation-delay: 360ms; }
 .service-card:nth-child(8) { animation-delay: 420ms; }
 .service-card:nth-child(9) { animation-delay: 480ms; }
+
+.admin-panel {
+  margin: 14px 0 20px;
+  padding: 14px;
+  border-radius: 10px;
+  background: $white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.admin-panel h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form button {
+  min-height: 38px;
+  border-radius: 6px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 8px 10px;
+  font-family: inherit;
+  background: $filters-bg;
+  color: $text;
+}
+
+.admin-form input::placeholder,
+.admin-form textarea::placeholder {
+  color: $text-soft;
+}
+
+.admin-form textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.admin-form button {
+  border: none;
+  background: $primary;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin-form button:hover {
+  background: $primary-hover;
+}
+
+.btn-delete {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #8f1f1f;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-delete:hover {
+  background: #741717;
+}
+
+.btn-book {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: $primary;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-book:hover {
+  background: $primary-hover;
+}
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.booking-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 16, 24, 0.55);
+}
+
+.booking-modal__content {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  background: $white;
+  color: $text;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: $shadow;
+}
+
+.booking-modal__content h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.booking-modal__service {
+  margin: 0 0 14px;
+  color: $text-soft;
+}
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+.booking-field {
+  display: grid;
+  gap: 6px;
+}
+
+.booking-field label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $text-soft;
+}
+
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+  display: block;
+  width: 100%;
+  margin: 0;
+  min-height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: $filters-bg;
+  color: $text;
+  font-family: inherit;
+  padding: 8px 10px;
+}
+
+.booking-field select {
+  height: 38px;
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.booking-field textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.booking-field select:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.booking-field.is-error input,
+.booking-field.is-error select {
+  border-color: #d14747;
+}
+
+.booking-hint {
+  font-size: 12px;
+  color: $text-soft;
+}
+
+.booking-field--full {
+  grid-column: 1 / -1;
+}
+
+.field-error {
+  min-height: 14px;
+  font-size: 12px;
+  color: #d14747;
+}
+
+.booking-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-cancel,
+.btn-submit-booking {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-cancel {
+  background: rgba(0, 0, 0, 0.08);
+  color: $text;
+}
+
+.btn-cancel:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.btn-submit-booking {
+  background: $primary;
+  color: #fff;
+}
+
+.btn-submit-booking:hover {
+  background: $primary-hover;
+}
+
+@media (max-width: 700px) {
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "magicslesh@gmail.com": [
+    {
+      "id": "ord-1771528173080",
+      "createdAt": "2026-02-19T19:09:33.080Z",
+      "total": "450 ₽",
+      "items": [
+        {
+          "id": "auto_shampoo",
+          "title": "Шампунь для авто",
+          "category": "Химия",
+          "price": "450 ₽",
+          "folder": "auto_shampoo",
+          "qty": 1
+        }
+      ]
+    }
+  ]
+}

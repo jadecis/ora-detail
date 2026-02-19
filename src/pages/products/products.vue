@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <main>
     <section class="products-hero">
       <Slider class="small-slider one-button" :simple="true" />
@@ -8,11 +8,32 @@
       <h1>Наши товары</h1>
       <p class="products-subtitle">Премиум товары, адаптированные под ваш автомобиль.</p>
 
+      <div v-if="isAdmin" class="admin-panel">
+        <h3>Управление товарами</h3>
+        <form class="admin-form" @submit.prevent="createProduct">
+          <input v-model.trim="newProduct.title" type="text" placeholder="Название" required />
+          <input v-model.trim="newProduct.category" type="text" placeholder="Категория" required />
+          <input v-model.number="newProduct.price" type="number" min="1" step="1" placeholder="Цена (число)" required />
+          <input v-model.trim="newProduct.folder" type="text" placeholder="Папка изображений (опционально)" />
+          <input v-model.trim="newProduct.id" type="text" placeholder="ID (опционально)" />
+          <button type="submit">Добавить товар</button>
+        </form>
+      </div>
+
       <div v-if="loading" class="products-status">Загрузка товаров...</div>
       <div v-else-if="error" class="products-status products-status--error">{{ error }}</div>
 
       <div class="products-layout">
-        <aside class="filters">
+        <button
+          type="button"
+          class="filters-toggle"
+          :class="{ 'is-open': isFiltersOpen }"
+          @click="isFiltersOpen = !isFiltersOpen"
+        >
+          {{ isFiltersOpen ? 'Скрыть фильтры' : 'Показать фильтры' }}
+        </button>
+
+        <aside class="filters" :class="{ 'is-open': isFiltersOpen }">
           <div class="filters-inner">
             <h3>Фильтры</h3>
             <div class="filter-group">
@@ -32,8 +53,8 @@
             </div>
 
             <div class="filter-actions">
-              <button class="btn-apply" type="button" @click="applyFilters">Применить</button>
-              <button class="btn-clear" type="button" @click="clearFilters">Очистить</button>
+              <button class="btn-apply" type="button" @click="applyFiltersAndMaybeClose">Применить</button>
+              <button class="btn-clear" type="button" @click="clearFiltersAndMaybeClose">Очистить</button>
             </div>
           </div>
         </aside>
@@ -55,6 +76,7 @@
                 <img :src="iconCart" alt="Добавить в корзину" />
                 {{ cartCounts[product.id] ? `В корзине: ${cartCounts[product.id]}` : 'Добавить в корзину' }}
               </button>
+              <button v-if="isAdmin" class="btn-delete" type="button" @click="removeProduct(product.id)">Удалить</button>
             </div>
           </div>
         </div>
@@ -77,14 +99,37 @@ const error = ref('')
 const selectedCategories = ref([])
 const priceMin = ref('')
 const priceMax = ref('')
+const isFiltersOpen = ref(false)
 const appliedCategories = ref([])
 const appliedMin = ref('')
 const appliedMax = ref('')
 const cartCounts = ref({})
 
+const newProduct = ref({
+  id: '',
+  folder: '',
+  title: '',
+  category: '',
+  price: null,
+})
+
+const currentUser = ref(null)
+const isAdmin = computed(() => currentUser.value?.role === 'admin')
+const actorIdentity = computed(() => currentUser.value?.email || currentUser.value?.login || '')
+const CART_KEY = 'ora-cart'
+const USER_KEY = 'ora-current-user'
+
+function safeParseJson(raw, fallback) {
+  try {
+    return raw ? JSON.parse(raw) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 const imageModules = import.meta.glob('../../assets/images/products/*/*.{jpg,jpeg,png,webp}', {
   eager: true,
-  import: 'default'
+  import: 'default',
 })
 
 const imageIndex = Object.entries(imageModules).reduce((acc, [path, url]) => {
@@ -157,6 +202,22 @@ function clearFilters() {
   applyFilters()
 }
 
+function closeFiltersOnSmallScreens() {
+  if (window.innerWidth <= 600) {
+    isFiltersOpen.value = false
+  }
+}
+
+function applyFiltersAndMaybeClose() {
+  applyFilters()
+  closeFiltersOnSmallScreens()
+}
+
+function clearFiltersAndMaybeClose() {
+  clearFilters()
+  closeFiltersOnSmallScreens()
+}
+
 function updateCartCounts(cart) {
   const counts = {}
   cart.forEach((item) => {
@@ -166,9 +227,7 @@ function updateCartCounts(cart) {
 }
 
 function addToCart(product) {
-  const key = 'ora-cart'
-  const stored = localStorage.getItem(key)
-  const cart = stored ? JSON.parse(stored) : []
+  const cart = safeParseJson(localStorage.getItem(CART_KEY), [])
   const existing = cart.find((item) => item.id === product.id)
   if (existing) {
     existing.qty = (existing.qty || 1) + 1
@@ -179,28 +238,83 @@ function addToCart(product) {
       price: product.price,
       category: product.category,
       folder: product.folder,
-      qty: 1
+      qty: 1,
     })
   }
-  localStorage.setItem(key, JSON.stringify(cart))
+  localStorage.setItem(CART_KEY, JSON.stringify(cart))
   updateCartCounts(cart)
 }
 
-onMounted(async () => {
+async function loadProducts() {
+  loading.value = true
+  error.value = ''
   try {
-    const url = new URL('../../products.json', import.meta.url)
-    const response = await fetch(url, { cache: 'no-cache' })
+    const response = await fetch('/api/products', { cache: 'no-cache' })
     if (!response.ok) throw new Error('Ошибка загрузки товаров.')
     const data = await response.json()
-    products.value = Array.isArray(data) ? data : []
+    products.value = Array.isArray(data?.items) ? data.items : []
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Неизвестная ошибка загрузки товаров.'
   } finally {
     loading.value = false
   }
+}
 
-  const stored = localStorage.getItem('ora-cart')
-  const cart = stored ? JSON.parse(stored) : []
+async function createProduct() {
+  if (!isAdmin.value) return
+  if (!Number.isInteger(newProduct.value.price) || newProduct.value.price <= 0) {
+    error.value = 'Цена должна быть положительным числом.'
+    return
+  }
+
+  try {
+    const response = await fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-email': actorIdentity.value,
+      },
+      body: JSON.stringify(newProduct.value),
+    })
+    const data = await response.json()
+    if (!response.ok || !data?.ok) {
+      throw new Error(data?.message || 'Не удалось добавить товар.')
+    }
+
+    newProduct.value = { id: '', folder: '', title: '', category: '', price: null }
+    await loadProducts()
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Не удалось добавить товар.'
+  }
+}
+
+async function removeProduct(id) {
+  if (!isAdmin.value) return
+
+  try {
+    const response = await fetch(`/api/products/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'x-user-email': actorIdentity.value,
+      },
+    })
+    const data = await response.json()
+    if (!response.ok || !data?.ok) {
+      throw new Error(data?.message || 'Не удалось удалить товар.')
+    }
+
+    await loadProducts()
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Не удалось удалить товар.'
+  }
+}
+
+onMounted(async () => {
+  currentUser.value = safeParseJson(localStorage.getItem(USER_KEY), null)
+
+  await loadProducts()
+
+  const cart = safeParseJson(localStorage.getItem(CART_KEY), [])
   updateCartCounts(cart)
 })
 </script>

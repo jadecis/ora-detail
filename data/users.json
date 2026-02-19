@@ -1,0 +1,30 @@
+[
+  {
+    "id": "844722c7-0b7f-41b9-93ac-636be3afa841",
+    "name": "Administrator",
+    "login": "admin",
+    "email": "admin@ora.local",
+    "phone": "+70000000000",
+    "password": "admin",
+    "role": "admin",
+    "createdAt": "2026-02-19T09:41:50.362Z"
+  },
+  {
+    "id": "abeb1956-40d0-4c24-8a14-ab0effaf7066",
+    "name": "Артём",
+    "email": "magg@gmail.com",
+    "phone": "+79209569139",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-02-19T09:44:59.702Z"
+  },
+  {
+    "id": "2bfd0abb-5068-41ab-b03c-941a11efaa47",
+    "name": "Артем",
+    "email": "magicslesh@gmail.com",
+    "phone": "+79209569139",
+    "password": "123456",
+    "role": "user",
+    "createdAt": "2026-02-19T10:21:39.464Z"
+  }
+]

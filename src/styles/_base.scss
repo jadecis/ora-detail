@@ -1,5 +1,68 @@
 @use 'globals' as *;
 
+:root {
+  /* Theme 1: Porcelain Teal (light) */
+  --color-bg: #f5f7f4;
+  --color-surface: #ffffff;
+  --color-surface-soft: #edf3f2;
+  --color-header: #24424a;
+  --color-text: #1f2d33;
+  --color-text-soft: #5b6e75;
+  --color-muted: #8d9ea4;
+  --color-accent: #00a3ad;
+  --color-primary: #2b6d76;
+  --color-primary-hover: #225a62;
+  --color-on-header: #f7fcff;
+  --shadow-card: 0 8px 22px rgba(26, 57, 63, 0.14);
+}
+
+:root[data-theme='dark'] {
+  /* Theme 2: Graphite Orange (dark) */
+  --color-bg: #2f343c;
+  --color-surface: #3d434d;
+  --color-surface-soft: #4a5260;
+  --color-header: #2a2f37;
+  --color-text: #f2f6fb;
+  --color-text-soft: #d2dae6;
+  --color-muted: #aeb8c6;
+  --color-accent: #ff7a3d;
+  --color-primary: #566070;
+  --color-primary-hover: #4a5361;
+  --color-on-header: #f8fbff;
+  --shadow-card: 0 10px 24px rgba(8, 10, 14, 0.28);
+}
+
+:root[data-theme='dark'] button,
+:root[data-theme='dark'] .btn-link,
+:root[data-theme='dark'] .profile-tab-btn,
+:root[data-theme='dark'] .hero-cta {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    background-color 0.2s ease, transform 0.2s ease;
+}
+
+:root[data-theme='dark'] button:hover,
+:root[data-theme='dark'] .btn-link:hover,
+:root[data-theme='dark'] .profile-tab-btn:hover,
+:root[data-theme='dark'] .hero-cta:hover {
+  border-color: rgba(255, 122, 61, 0.6);
+  box-shadow: 0 0 0 1px rgba(255, 122, 61, 0.4), 0 0 16px rgba(255, 122, 61, 0.24);
+}
+
+:root[data-theme='dark'] button:active,
+:root[data-theme='dark'] .btn-link:active,
+:root[data-theme='dark'] .profile-tab-btn:active,
+:root[data-theme='dark'] .hero-cta:active {
+  box-shadow: 0 0 0 1px rgba(255, 122, 61, 0.55), 0 0 20px rgba(255, 122, 61, 0.28);
+}
+
+:root[data-theme='dark'] button:focus-visible,
+:root[data-theme='dark'] .btn-link:focus-visible,
+:root[data-theme='dark'] .profile-tab-btn:focus-visible,
+:root[data-theme='dark'] .hero-cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 122, 61, 0.65), 0 0 18px rgba(255, 122, 61, 0.3);
+}
+
 // Base styles
 * {
   margin: 0;
@@ -9,10 +72,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: $text;
@@ -20,6 +84,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  transition: background-color 220ms ease, color 220ms ease;
+  overflow-x: hidden;
 }
 
 // Layout

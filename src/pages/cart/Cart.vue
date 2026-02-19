@@ -1,10 +1,14 @@
-<template>
+﻿<template>
   <main>
     <section class="cart-page">
       <h1>Корзина</h1>
       <p class="cart-subtitle">Премиум товары, адаптированные под ваш автомобиль.</p>
 
       <div v-if="paidMessage" class="cart-status cart-status--success">{{ paidMessage }}</div>
+      <div v-if="authMessage" class="cart-status cart-status--auth">
+        <span>{{ authMessage }}</span>
+        <button v-if="showAuthAction" type="button" class="cart-status__action" @click="goToAuth">Войти и продолжить</button>
+      </div>
 
       <div v-if="!items.length" class="cart-empty">Корзина пуста.</div>
 
@@ -43,13 +47,21 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const items = ref([])
 const paidMessage = ref('')
+const authMessage = ref('')
+
+const router = useRouter()
+const route = useRoute()
+
+const CART_KEY = 'ora-cart'
+const USER_KEY = 'ora-current-user'
 
 const imageModules = import.meta.glob('../../assets/images/products/*/*.{jpg,jpeg,png,webp}', {
   eager: true,
-  import: 'default'
+  import: 'default',
 })
 
 const imageIndex = Object.entries(imageModules).reduce((acc, [path, url]) => {
@@ -77,18 +89,72 @@ function parsePrice(value) {
   return Number.isNaN(number) ? 0 : number
 }
 
+function safeParseJson(raw, fallback) {
+  try {
+    return raw ? JSON.parse(raw) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 const totalPrice = computed(() => {
   const total = items.value.reduce((sum, item) => sum + parsePrice(item.price) * (item.qty || 1), 0)
-  return total.toLocaleString('ru-RU') + ' ₽'
+  return `${total.toLocaleString('ru-RU')} ₽`
 })
 
+const showAuthAction = computed(() => !getCurrentUser())
+
 function loadCart() {
-  const stored = localStorage.getItem('ora-cart')
-  items.value = stored ? JSON.parse(stored) : []
+  items.value = safeParseJson(localStorage.getItem(CART_KEY), [])
 }
 
 function saveCart() {
-  localStorage.setItem('ora-cart', JSON.stringify(items.value))
+  localStorage.setItem(CART_KEY, JSON.stringify(items.value))
+}
+
+function getCurrentUser() {
+  return safeParseJson(localStorage.getItem(USER_KEY), null)
+}
+
+function getUserHistoryKey(user) {
+  return user?.email || user?.login || ''
+}
+
+async function appendOrderToHistory() {
+  const user = getCurrentUser()
+  if (!user) return false
+
+  const userKey = getUserHistoryKey(user)
+  if (!userKey) return false
+
+  const order = {
+    id: `ord-${Date.now()}`,
+    createdAt: new Date().toISOString(),
+    total: totalPrice.value,
+    items: items.value.map((item) => ({
+      id: item.id,
+      title: item.title,
+      category: item.category,
+      price: item.price,
+      folder: item.folder || '',
+      qty: item.qty || 1,
+    })),
+  }
+
+  try {
+    const response = await fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-email': userKey,
+      },
+      body: JSON.stringify({ order }),
+    })
+    const data = await response.json().catch(() => null)
+    return Boolean(response.ok && data?.ok)
+  } catch {
+    return false
+  }
 }
 
 function removeItem(id) {
@@ -108,13 +174,34 @@ function changeQty(id, delta) {
   saveCart()
 }
 
-function pay() {
+async function pay() {
+  authMessage.value = ''
+  const currentUser = getCurrentUser()
+  if (!currentUser) {
+    paidMessage.value = ''
+    authMessage.value = 'Чтобы оформить заказ, войдите в аккаунт. После входа вы вернётесь в корзину.'
+    return
+  }
+
+  const savedToHistory = await appendOrderToHistory()
   items.value = []
   saveCart()
-  paidMessage.value = 'Спасибо за ваш заказ! Мы свяжемся с вами в ближайшее время.'
+  paidMessage.value = savedToHistory
+    ? 'Спасибо за ваш заказ! Он добавлен в историю заказов в профиле.'
+    : 'Спасибо за ваш заказ!'
 }
 
-onMounted(loadCart)
+function goToAuth() {
+  router.push({ path: '/profile', query: { redirect: 'cart', continueCheckout: '1' } })
+}
+
+onMounted(() => {
+  loadCart()
+  const currentUser = getCurrentUser()
+  if (route.query.continueCheckout === '1' && currentUser) {
+    authMessage.value = 'Вы вошли в систему. Теперь можно продолжить оформление заказа.'
+  }
+})
 </script>
 
 <style lang="scss" scoped src="./Cart.scss"></style>
