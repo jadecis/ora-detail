@@ -17,5 +17,18 @@ import AppFooter from './components/Footer.vue'
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 100px;
+}
+
+@media (max-width: 900px) {
+  #app {
+    padding-top: 88px;
+  }
+}
+
+@media (max-width: 700px) {
+  #app {
+    padding-top: 74px;
+  }
 }
 </style>

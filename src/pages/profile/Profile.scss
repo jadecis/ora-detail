@@ -193,16 +193,17 @@
 }
 
 :global([data-theme='dark']) .auth-switch-btn {
-  border-color: rgba(255, 122, 61, 0.38);
-  background: linear-gradient(180deg, rgba(255, 122, 61, 0.16), rgba(255, 122, 61, 0.08));
-  color: #ff7a3d;
-  box-shadow: 0 3px 10px rgba(255, 122, 61, 0.16);
+  border-color: rgba(255, 145, 94, 0.9);
+  background: linear-gradient(180deg, rgba(255, 135, 72, 0.28), rgba(255, 122, 61, 0.16));
+  color: #ff9d68;
+  box-shadow: 0 3px 10px rgba(255, 122, 61, 0.24);
 }
 
 :global([data-theme='dark']) .auth-switch-btn:hover {
-  border-color: rgba(255, 122, 61, 0.55);
-  background: linear-gradient(180deg, rgba(255, 122, 61, 0.2), rgba(255, 122, 61, 0.1));
-  box-shadow: 0 8px 16px rgba(255, 122, 61, 0.24);
+  border-color: rgba(255, 160, 112, 1);
+  background: linear-gradient(180deg, rgba(255, 145, 94, 0.34), rgba(255, 122, 61, 0.2));
+  color: #ffb489;
+  box-shadow: 0 8px 16px rgba(255, 122, 61, 0.32);
 }
 
 :global([data-theme='dark']) .auth-switch-btn:active {

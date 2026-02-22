@@ -44,6 +44,7 @@
 /* Larger variant only when Slider used with class="large-slider" (Home page) */
 .hero-banner.large-slider {
   height: 480px; /* 360px * 4/3 */
+  margin-top: -100px;
 }
 
 /* Small variant for products page: half height */
@@ -94,7 +95,10 @@
 }
 
 @media (max-width: 900px) {
-  .hero-banner.large-slider { height: 380px; }
+  .hero-banner.large-slider {
+    height: 380px;
+    margin-top: -88px;
+  }
   .hero-banner.small-slider { height: 240px; }
   .hero-content { padding-left: 24px; }
   .hero-content h2 { font-size: 30px; }
@@ -103,7 +107,10 @@
 
 @media (max-width: 600px) {
   .hero-banner { height: 260px; }
-  .hero-banner.large-slider { height: 300px; }
+  .hero-banner.large-slider {
+    height: 300px;
+    margin-top: -74px;
+  }
   .hero-banner.small-slider { height: 200px; }
   .hero-content {
     padding-left: 16px;

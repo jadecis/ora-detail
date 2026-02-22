@@ -1,1 +1,18 @@
-﻿{}
+{
+  "magg@gmail.com": [
+    {
+      "id": "rec_mlyb7ag2_2xzms",
+      "serviceId": "hand-wash",
+      "serviceTitle": "Комплексная мойка",
+      "servicePrice": "от 1 200 ₽",
+      "serviceDuration": "60–90 мин",
+      "name": "Артём",
+      "phone": "+79209569139",
+      "comment": "",
+      "appointmentDate": "2026-02-25",
+      "appointmentTime": "14:00",
+      "status": "active",
+      "createdAt": "2026-02-22T22:18:25.058Z"
+    }
+  ]
+}

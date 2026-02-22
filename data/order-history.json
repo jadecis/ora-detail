@@ -15,5 +15,22 @@
         }
       ]
     }
+  ],
+  "magg@gmail.com": [
+    {
+      "id": "ord-1771798678259",
+      "createdAt": "2026-02-22T22:17:58.259Z",
+      "total": "320 ₽",
+      "items": [
+        {
+          "id": "glass_cleaner",
+          "title": "Средство для стекол",
+          "category": "Химия",
+          "price": "320 ₽",
+          "folder": "glass_cleaner",
+          "qty": 1
+        }
+      ]
+    }
   ]
 }
