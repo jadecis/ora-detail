@@ -21,3 +21,17 @@ Thumbs.db
 # Env-файлы
 .env
 .env.*
+
+# Local environments and generated files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.idea/
+.vs/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
